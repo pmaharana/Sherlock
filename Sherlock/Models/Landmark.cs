@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -18,7 +19,7 @@ namespace Sherlock.Models
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yy}", ApplyFormatInEditMode = true)]
-        public DateTime? DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; } = DateTime.Now;
 
         public string Address1 { get; set; }
         public string Address2 { get; set; }
@@ -34,7 +35,14 @@ namespace Sherlock.Models
         public string Media4 { get; set; }
         public string Links { get; set; }
 
+        public string UserId { get; set; }
 
+        [ForeignKey("UserId")]
+        public ApplicationUser User{ get; set; }
+
+        public bool IsFavorite { get; set; } = false;
+
+        //rating system out of 4 stars
 
 
     }

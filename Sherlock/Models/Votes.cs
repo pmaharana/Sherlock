@@ -7,5 +7,6 @@ namespace Sherlock.Models
 {
     public class Votes
     {
+        public int Id { get; set; }
     }
 }
