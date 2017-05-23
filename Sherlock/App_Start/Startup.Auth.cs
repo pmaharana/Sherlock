@@ -58,11 +58,11 @@ namespace Sherlock
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "832036306844-rfat4ft811b61ppkhtgev9aruluosbr8.apps.googleusercontent.com",
+                ClientSecret = "En4mb1SkKeP2Z2r9L1h1d6i3"
+            });
         }
     }
 }

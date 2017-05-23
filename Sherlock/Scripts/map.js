@@ -12,9 +12,9 @@ function initMap() {
         zoom: 10,
         center: uluru
     });
-
     talkToServer();
 }
+
 
 
 
