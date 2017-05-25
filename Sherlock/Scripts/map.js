@@ -9,7 +9,7 @@ let newmarker;
 function initMap() {
     let uluru = { lat: 27.761767, lng: -82.650683 };
     mappy = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
+        zoom: 12,
         center: uluru
     });
     talkToServer();
@@ -72,7 +72,7 @@ function initMapSingle(latValue, longValue) {
 let talkToServer = () => {
 
     $.ajax({
-        url: '/api/MapsDeux',
+        url: '/api/LandmarksAPI',
         dataType: "json",
         success: (data) => {
 
@@ -83,14 +83,14 @@ let talkToServer = () => {
 
 
                 var _m = new google.maps.Marker({
-                    position: { lat: item.Lat, lng: item.Long },
+                    position: { lat: item.Latitude, lng: item.Longitude },
                     title: item.Title,
                     label: item.Title,
                 });
 
                 var contentString =
                     item.Description +
-                    '<img src="' + item.Image + '"></img>'
+                    '<img src="' + item.Image1 + '"></img>'
                     ;
 
                 var infowindow = new google.maps.InfoWindow({
@@ -118,19 +118,23 @@ let talkToServer = () => {
 
 function saveData() {
     let title = escape(document.getElementById('title').value);
-    let address = escape(document.getElementById('address').value);
+    let description = escape(document.getElementById('description').value);
+    let userid = escape(document.getElementById('userid').value);
+    let categoryid = escape(document.getElementById('categories').value);
     let latlng = newmarker.getPosition();
 
     //let mapdata = [{ Title: title, Address: address, Lat: latlng.lat(), Long: latlng.lng() }];
 
     $.ajax({
-        url: "/api/MapsDeux",
+        url: "/api/LandmarksAPI",
         data: JSON.stringify({
             // Those property names must match the property names of map object in the controller
             Title: title,
-            Address: address,
-            Lat: latlng.lat(),
-            Long: latlng.lng()
+            Description: description,
+            Latitude: latlng.lat(),
+            Longitude: latlng.lng(),
+            UserId: userid,
+            CategoryId: parseInt(categoryid)
         }),
         contentType: "application/json",
         type: "POST",

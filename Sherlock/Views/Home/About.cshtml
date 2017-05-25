@@ -1,7 +1,55 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@using Microsoft.AspNet.Identity
+@using Sherlock.Models
 
-<p>Use this area to provide additional information.</p>
+<h3>Hellow @User.Identity.Name.Split('@').FirstOrDefault().ToUpper()</h3>
+<div id="map"></div>
+<div style="display:none;">
+    <div id="form">
+        <table>
+            <tr><td>Title:</td><td><input type="text" , id="title" /></td></tr>
+            <tr><td><label for="description">Description</label>
+<textarea id="description" rows="4"></textarea></td></tr>
+
+            @*<tr>
+                <td></td>
+                <td><input type="button" value="Save" onclick="saveData();" /></td>
+            </tr>*@
+        </table>
+        
+        <input type="hidden" id="userid" value="@User.Identity.GetUserId()" />
+        <label for="categories">Which Category?</label>
+        @{ var category = new ApplicationDbContext().Categories.ToList();}
+        <select id="categories">
+            @{foreach (var item in category)
+            {
+
+                <option value="@item.Id">@item.Name</option>
+            } }
+            
+        </select>
+           
+        <p><button type="submit" class="btn btn-primary" onclick="saveData();">Save to DB</button></p>
+    </div>
+</div>
+
+
+<div id="floating-panel">
+    <input onclick="clearMarkers();" type=button value="Hide Markers">
+    <input onclick="showMarkers();" type=button value="Show All Markers">
+
+</div>
+
+
+
+<button onclick="initMapAuth();">map load</button>
+
+<p> <button onclick="talkToServer();"> Click me</button> </p>
+
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+
+
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb35GFpToNtidA7VfBEZS1vOEgiIxJ2vI&callback=initMapAuth">
+</script>

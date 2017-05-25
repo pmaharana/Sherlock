@@ -18,10 +18,19 @@ namespace Sherlock.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/LandmarksAPI
-        public IQueryable<Landmark> GetLandmarks()
+        public async Task<IHttpActionResult> Get()
         {
-            return db.Landmarks;
+            var landmark = await db.Landmarks.ToListAsync();
+            return Ok(landmark);
         }
+
+
+
+
+        //public IQueryable<Landmark> GetLandmarks()
+        //{
+        //    return db.Landmarks;
+        //}
 
         // GET: api/LandmarksAPI/5
         [ResponseType(typeof(Landmark))]

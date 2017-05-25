@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Sherlock.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,23 +11,24 @@ namespace Sherlock.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        public async Task<ActionResult> Index()
         {
-            return View();
+            return View(await db.Landmarks.ToListAsync());
         }
 
-        public ActionResult About()
+        [System.Web.Mvc.Authorize]
+        public async Task<ActionResult> About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return View(await db.Landmarks.ToListAsync());
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
+
+        public async Task<ActionResult> Contact()
+        {
+            return View(await db.Landmarks.ToListAsync());
         }
     }
 }
