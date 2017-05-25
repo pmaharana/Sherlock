@@ -7,6 +7,7 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    padding-top: 15px;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -25,4 +26,38 @@ textarea {
 
 #map {
     height: 700px;
+}
+
+/* EXTRAS to give it some style -------------------------------------------------- */
+body {
+    font-family: 'Sancreek', cursive;
+    background-color: #703030;
+    background: url(http://i.imgur.com/9G3raXA.png) opacity: 0.5;
+}
+
+h2, h3 {
+    font-family: 'Sancreek', cursive;
+}
+
+p {
+    font-size: 18px;
+}
+
+.biggy {
+    font-size: 55px;
+    font-family: 'Sancreek', cursive;
+    font-family: 'Rye', cursive;
+}
+
+.navbar-inverse {
+    background-color: #2F343B;
+}
+
+    .navbar-inverse .navbar-brand {
+        font-size: 40px;
+        color: #E3CDA4;
+    }
+
+.navbar-nav {
+    font-size: 22px;
 }
