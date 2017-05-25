@@ -40,6 +40,11 @@ namespace Sherlock.Models
         [ForeignKey("UserId")]
         public ApplicationUser User{ get; set; }
 
+        public virtual ICollection<Votes> Vote { get; set; } = new HashSet<Votes>();
+
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
+
         public bool IsFavorite { get; set; } = false;
 
         //rating system out of 4 stars

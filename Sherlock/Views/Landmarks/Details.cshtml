@@ -1,0 +1,36 @@
+﻿@model Sherlock.Models.Landmark
+@{
+    ViewBag.Title = "Details";
+}
+<div class="panel panel-default">
+    <div class="panel-body">
+
+        <h1 class="biggy">@Html.DisplayFor(model => model.Title)</h1>
+        <div><img src="@Html.DisplayFor(model => model.Image1)" style="width: 100%;" alt="Alternate Text" /></div>
+        <div style="color: transparent;">.</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p>Address information to be inserted</p>
+                <p>City State Country</p>
+            </div>
+        </div>
+        <div>
+            <p>
+                Description text here. LoremObis nos cuptatu riant. Um volorercid que venis explaborum volupturibus et, sam rerrum nisque doluptur aliquae nulparum aut aut alit aliquis cipsus non con re volo eos mil incte nem ex eum ex eaquibus molupta qui conem que dios explicimus in commossint maximpos as cus aut quatia incitent alis enet re qui duciisimusam consequ atiatiisi dolor aut am, quidis venda corem harumquia nobis es nos moloribus vero idi blatibus ea dit il exeremporrum aut aut quia dolorerchil mo beaque comnimp orporercid que latquunt ommollant.
+                At officaes endi as nonsectem hariam nusam explaboribus nonem verci velecatem eiusam fugiand ionsenisciet oditi oditas siminct emoluptat aut debis ipis nis sero delitatur? Qui doluptatur repudae vendi ditat.
+                Ga. Quia cupta voloratem rehendae mo endi dit, id quam eseque eat alit la dellant laudam hiliquati nonsed erspit, si sum ut isi occatio. Equo od es ut qui quibusda a quunt aborisc itaquae et fugit, consecto dolorem estiorporro
+            </p>
+        </div>
+
+        <h2>Additional Links</h2>
+        <a href="#">sampleLink</a>
+
+        <h2>Rating &nbsp;&nbsp;&nbsp;<span class="alert-danger">pipes</span></h2>
+
+
+        <p>
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

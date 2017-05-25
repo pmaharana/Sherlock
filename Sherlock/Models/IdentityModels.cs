@@ -11,9 +11,10 @@ namespace Sherlock.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public virtual ICollection<Landmark> Landmarks { get; set; }
+        public virtual ICollection<Landmark> Landmarks { get; set; } = new HashSet<Landmark>();
+        public virtual ICollection<Comments> Comments { get; set; } = new HashSet<Comments>();
+        public virtual ICollection<Votes> Votes { get; set; } = new HashSet<Votes>();
 
-        public virtual ICollection<Comments> Comments { get; set; }
 
 
 
@@ -37,5 +38,11 @@ namespace Sherlock.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Landmark> Landmarks { get; set; }
+        public DbSet<Comments> Comments { get; set; }
+        public DbSet<Votes> Votes { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
     }
 }
