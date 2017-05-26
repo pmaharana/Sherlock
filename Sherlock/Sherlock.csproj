@@ -208,6 +208,10 @@
     <Compile Include="Migrations\201705231644125_addedtables.Designer.cs">
       <DependentUpon>201705231644125_addedtables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705261456135_InitializingSherlock.cs" />
+    <Compile Include="Migrations\201705261456135_InitializingSherlock.Designer.cs">
+      <DependentUpon>201705261456135_InitializingSherlock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -307,6 +311,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705231644125_addedtables.resx">
       <DependentUpon>201705231644125_addedtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705261456135_InitializingSherlock.resx">
+      <DependentUpon>201705261456135_InitializingSherlock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
