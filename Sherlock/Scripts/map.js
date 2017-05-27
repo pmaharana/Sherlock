@@ -7,7 +7,7 @@ let newmarker;
 
 
 function initMap() {
-    let uluru = { lat: 27.761767, lng: -82.650683 };
+    let uluru = { lat: 27.771344, lng: -82.635745 };
     mappy = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: uluru,
@@ -29,7 +29,7 @@ function initMap() {
 
 function initMapAuth() {
 
-    let ulur = { lat: 27.761767, lng: -82.650683 };
+    let ulur = { lat: 27.771344, lng: -82.635745 };
     mappy = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: ulur,
@@ -98,14 +98,27 @@ let talkToServer = () => {
                     label: item.Title,
                     icon: 'http://i.imgur.com/NBZi6ra.png'
                 });
-
+                var tempor = item.Title;
                 var contentString =
-                    item.Description +
-                    '<img src="' + item.Image1 + '"></img>'
+                    '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<h1 id="firstHeading" class="firstHeading">'+ item.Title +'</h1>' +
+                    '<div id="bodytent">' + '<img src="' + item.Image1 + '" alt="' + item.Title +'" />' +
+                    '<p>' + item.Description + '</p>' +
+                    '<a href= "' + item.Links + '" target="_blank"> More Info...</a>' +
+                    '</div>' +
+                    '</div>'
+
+                    //item.Title +
+                    //'<img src="' + item.Image1 + '"></img>' +
+                    //item.Description
                     ;
 
                 var infowindow = new google.maps.InfoWindow({
-                    content: contentString
+                    content: contentString,
+                    pixelOffset: new google.maps.Size(00, 0),
+                    maxWidth: 500,
                 });
 
                 _m.addListener("click", function () {
