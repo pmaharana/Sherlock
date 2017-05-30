@@ -2,7 +2,7 @@
 
 
 
-<h2>Change Map Options</h2>
+<h2>The List of Landmarks</h2>
 
 
 
@@ -27,6 +27,7 @@
                 <tr>
                     <td>
                         <a onClick="initMapSingle(@item.Latitude, @item.Longitude);" style="cursor: pointer; ">@item.Title</a>
+                        <span><a href="~/Landmarks/Details?id=@item.Id">View details</a></span> 
                     </td>
 
                     @*<td>

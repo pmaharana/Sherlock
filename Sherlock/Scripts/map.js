@@ -161,3 +161,40 @@ function saveData() {
     
 }
 
+
+
+function saveComment() {
+    //let userid = escape(document.getElementById('userId').value);
+    //let landmarkid = escape(document.getElementById('landmarkId').value);
+    //let usercomment = escape(document.getElementById('userComment').value);
+
+    let userid = $("#userId").val();
+    let landmarkid = $("#landmarkId").val();
+    let usercomment = $("#userComment").val();
+    
+   
+    $.ajax({
+        url: "/api/CommentsAPI",
+        data: JSON.stringify({
+            
+            Body: usercomment,
+            LandmarkId: parseInt(landmarkid),
+            UserId: userid
+        }),
+           
+        contentType: "application/json",
+        type: "POST",
+        dataType: "json",
+        success: (data) => {
+            
+            console.log('hello', data, that);
+            $('textarea#userComment').val('');    
+        }
+
+    });
+
+}
+    
+
+    
+
