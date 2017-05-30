@@ -14,7 +14,7 @@ function initMap() {
         mapTypeId: google.maps.MapTypeId.ROADMAP, styles:
         [{ "elementType": "geometry", "stylers": [{ "color": "#ebe3cd" }] },
             { "elementType": "labels.text.fill", "stylers": [{ "color": "#523735" }] },
-            { "elementType": "labels.text.stroke", "stylers": [{ "color": "#f5f1e6" }] },
+            { "elementType": "labels.text.stroke", "stylers": [{ "col or": "#f5f1e6" }] },
             { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": 
                 [{ "color": "#c9b2a6" }]
             }, { "featureType": "administrative.land_parcel", "elementType": "geometry.stroke", "stylers": [{ "color": "#dcd2be" }] },
@@ -89,23 +89,23 @@ let talkToServer = () => {
 
             //load marker data here 
 
-            var markers = data.map((item) => {
+            let markers = data.map((item) => {
 
 
 
-                var _m = new google.maps.Marker({
+                let _m = new google.maps.Marker({
                     position: { lat: item.Latitude, lng: item.Longitude },
                     title: item.Title,
                     label: item.Title,
                     icon: 'http://i.imgur.com/NBZi6ra.png'
                 });
 
-                var contentString =
+                let contentString =
                     item.Description +
                     '<img src="' + item.Image1 + '"></img>'
                     ;
 
-                var infowindow = new google.maps.InfoWindow({
+                let infowindow = new google.maps.InfoWindow({
                     content: contentString
                 });
 
@@ -116,7 +116,7 @@ let talkToServer = () => {
             });
 
 
-            var markerCluster = new MarkerClusterer(mappy, markers,
+            let markerCluster = new MarkerClusterer(mappy, markers,
                 { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 
             markers
@@ -161,7 +161,3 @@ function saveData() {
     
 }
 
-// 1) relate to THAT (context)
-// 2) pass the infowindow in somehow - (closure, wrapper function)
-// 3) make infowindow global
-//4) google places API

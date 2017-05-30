@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandmarksAPIController.cs" />
     <Compile Include="Controllers\LandmarksController.cs" />
@@ -207,6 +208,10 @@
     <Compile Include="Migrations\201705231644125_addedtables.cs" />
     <Compile Include="Migrations\201705231644125_addedtables.Designer.cs">
       <DependentUpon>201705231644125_addedtables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705301421534_changedcomments.cs" />
+    <Compile Include="Migrations\201705301421534_changedcomments.Designer.cs">
+      <DependentUpon>201705301421534_changedcomments.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -297,6 +302,11 @@
     <Content Include="Views\Landmarks\Edit.cshtml" />
     <Content Include="Views\Landmarks\Index.cshtml" />
     <Content Include="Views\Home\Info.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +317,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705231644125_addedtables.resx">
       <DependentUpon>201705231644125_addedtables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705301421534_changedcomments.resx">
+      <DependentUpon>201705301421534_changedcomments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
