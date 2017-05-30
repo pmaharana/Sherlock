@@ -17,6 +17,7 @@
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
+
                 </th>
 
                 <th></th>
@@ -27,6 +28,7 @@
                 <tr>
                     <td>
                         <a onClick="initMapSingle(@item.Latitude, @item.Longitude);" style="cursor: pointer; ">@item.Title</a>
+                        <span><a href="~/Landmarks/Details?id=@item.Id">View details</a></span> 
                     </td>
 
                     @*<td>

@@ -83,8 +83,9 @@ function initMapSingle(latValue, longValue) {
 let talkToServer = () => {
 
     $.ajax({
-        url: '/api/LandmarksAPI',
+        url: "/api/LandmarksAPI",
         dataType: "json",
+        type: "GET",
         success: (data) => {
 
             //load marker data here 
@@ -161,3 +162,32 @@ function saveData() {
     
 }
 
+function saveComment() {
+
+
+    let userid = $("#userId").val();
+    let landmarkid = $("#landmarkId").val();
+    let usercomment = $("#userComment").val();
+
+
+    $.ajax({
+        url: "/api/CommentsAPI",
+        data: JSON.stringify({
+
+            Body: usercomment,
+            LandmarkId: parseInt(landmarkid),
+            UserId: userid
+        }),
+
+        contentType: "application/json",
+        type: "POST",
+        dataType: "json",
+        success: (data) => {
+
+            console.log('hello', data, that);
+            $('textarea#userComment').val('');
+        }
+
+    });
+
+}

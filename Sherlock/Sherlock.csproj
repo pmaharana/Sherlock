@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentsAPIController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandmarksAPIController.cs" />
@@ -212,6 +213,14 @@
     <Compile Include="Migrations\201705301421534_changedcomments.cs" />
     <Compile Include="Migrations\201705301421534_changedcomments.Designer.cs">
       <DependentUpon>201705301421534_changedcomments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705302031326_whatsgoingon.cs" />
+    <Compile Include="Migrations\201705302031326_whatsgoingon.Designer.cs">
+      <DependentUpon>201705302031326_whatsgoingon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705302124300_changedvirtual.cs" />
+    <Compile Include="Migrations\201705302124300_changedvirtual.Designer.cs">
+      <DependentUpon>201705302124300_changedvirtual.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -320,6 +329,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705301421534_changedcomments.resx">
       <DependentUpon>201705301421534_changedcomments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705302031326_whatsgoingon.resx">
+      <DependentUpon>201705302031326_whatsgoingon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705302124300_changedvirtual.resx">
+      <DependentUpon>201705302124300_changedvirtual.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
