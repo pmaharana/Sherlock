@@ -79,12 +79,18 @@ p {
     margin: 10px;
 }
 
+
 #bodytent {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 15px;
 }
 
 #bodytent img {
-    width: 300px;
-    float: right;
+        width: 700px;
+        max-width: 100%;
+}
+
+#form {
+    background-color: #E3CDA4;
+    width: 600px;
 }

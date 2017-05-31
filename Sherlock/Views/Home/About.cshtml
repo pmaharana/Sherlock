@@ -4,32 +4,61 @@
 <h3 class="yellow">@User.Identity.Name.Split('@').FirstOrDefault().ToUpper() , thanks for adding to our database.</h3>
 <div id="map"></div>
 <div style="display:none;">
-    <div id="form">
-        <table>
-            <tr><td>Title:</td><td><input type="text" , id="title" /></td></tr>
-            <tr><td><label for="description">Description</label>
-<textarea id="description" rows="4"></textarea></td></tr>
 
-            @*<tr>
-                <td></td>
-                <td><input type="button" value="Save" onclick="saveData();" /></td>
-            </tr>*@
-        </table>
-        
-        <input type="hidden" id="userid" value="@User.Identity.GetUserId()" />
-        <label for="categories">Which Category?</label>
-        @{ var category = new ApplicationDbContext().Categories.ToList();}
-        <select id="categories">
-            @{foreach (var item in category)
-            {
+<!-- FORM INFORMATION HERE  -->
 
-                <option value="@item.Id">@item.Name</option>
-            } }
-            
-        </select>
-           
-        <p><button type="submit" class="btn btn-primary" onclick="saveData();">Save to DB</button></p>
-    </div>
+    <form class="form-horizontal" id="form">
+        <fieldset>
+
+            <!-- Form Name -->
+            <h1 class="biggy" style="text-align: center;">Contribute!</h1>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textinput">Name</label>
+                <div class="col-md-9">
+                    <input id="title" name="textinput" type="text" placeholder="Name of location" class="form-control input-md">
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="textarea">Description</label>
+                <div class="col-md-9">
+                    <textarea class="form-control" id="description" rows="4" name="textarea" placeholder="something interesting..."></textarea>
+                </div>
+            </div>
+
+            <input type="hidden" id="userid" value="@User.Identity.GetUserId()" />
+
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-3 control-label" for="selectbasic">Type of Landmark</label>
+                <div class="col-md-8">
+                    @{ var category = new ApplicationDbContext().Categories.ToList();}
+                    <select id="categories" name="selectbasic" class="form-control">
+                        @{foreach (var item in category)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <div class="col-md-6">
+                    <button type="submit" id="button1id" name="button1id" class="btn btn-success" onclick="saveData();">Submit</button>
+                </div>
+            </div>
+
+
+        </fieldset>
+    </form>
+
+<!--  END OF FORM  -->
 </div>
 
 

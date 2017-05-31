@@ -91,6 +91,11 @@ let talkToServer = () => {
 
             var markers = data.map((item) => {
 
+                // Event that closes the Info Window with a click on the map
+                //google.maps.event.addListener(map, 'click', function () {
+                //    infowindow.close();
+                //});
+
 
 
                 var _m = new google.maps.Marker({
@@ -116,18 +121,24 @@ let talkToServer = () => {
                     //item.Description
                     ;
 
-                var infowindow = new google.maps.InfoWindow({
+                let infowindow = new google.maps.InfoWindow({
                     content: contentString,
-                    pixelOffset: new google.maps.Size(00, 0),
-                    maxWidth: 500,
+                    pixelOffset: new google.maps.Size(0, 0),
+                    maxWidth: 700,
                 });
 
                 _m.addListener("click", function () {
+                    //infowindow.close();
                     infowindow.open(mappy, _m);
                 });
-                return _m;
-            });
 
+                google.maps.event.addListener(mappy, "click", function (event) {
+                    console.log('clicked')
+                    infowindow.close();
+                });
+                return _m;
+
+            });
 
             var markerCluster = new MarkerClusterer(mappy, markers,
                 { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
@@ -174,7 +185,35 @@ function saveData() {
     
 }
 
+
+}
+
+// GeoLocation
+var elMap = document.getElementById('loc');                 // HTML element
+var msg = 'Sorry, we were unable to get your location.';    // No location msg
+
+if (Modernizr.geolocation) {                                // Is geo supported
+    navigator.geolocation.getCurrentPosition(success, fail);  // Ask for location
+    elMap.textContent = 'Checking location...';               // Say checking...
+} else {                                                    // Not supported
+    elMap.textContent = msg;                                  // Add manual entry
+}
+
+function success(position) {                                // Got location
+    msg = '<h3>Longitude:<br>';                               // Create message
+    msg += position.coords.longitude + '</h3>';               // Add longitude
+    msg += '<h3>Latitude:<br>';                               // Create message
+    msg += position.coords.latitude + '</h3>';                // Add latitude
+    elMap.innerHTML = msg;                                    // Show location
+}
+
+function fail(msg) {                                        // Not got location
+    elMap.textContent = msg;                                  // Show text input
+    console.log(msg.code);                                    // Log the error
+}
+
 // 1) relate to THAT (context)
 // 2) pass the infowindow in somehow - (closure, wrapper function)
 // 3) make infowindow global
 //4) google places API
+
