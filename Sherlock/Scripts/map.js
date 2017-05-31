@@ -7,7 +7,7 @@ let newmarker;
 
 
 function initMap() {
-    let uluru = { lat: 27.761767, lng: -82.650683 };
+    let uluru = { lat: 27.771344, lng: -82.635745 };
     mappy = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: uluru,
@@ -29,7 +29,7 @@ function initMap() {
 
 function initMapAuth() {
 
-    let ulur = { lat: 27.761767, lng: -82.650683 };
+    let ulur = { lat: 27.771344, lng: -82.635745 };
     mappy = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: ulur,
@@ -92,6 +92,11 @@ let talkToServer = () => {
 
             let markers = data.map((item) => {
 
+                // Event that closes the Info Window with a click on the map
+                //google.maps.event.addListener(map, 'click', function () {
+                //    infowindow.close();
+                //});
+
 
 
                 let _m = new google.maps.Marker({
@@ -101,21 +106,42 @@ let talkToServer = () => {
                     icon: 'http://i.imgur.com/NBZi6ra.png'
                 });
 
-                let contentString =
-                    item.Description +
-                    '<img src="' + item.Image1 + '"></img>'
+                var tempor = item.Title;
+                var contentString =
+                    '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<h1 id="firstHeading" class="firstHeading">'+ item.Title +'</h1>' +
+                    '<div id="bodytent">' + '<img src="' + item.Image1 + '" alt="' + item.Title +'" />' +
+                    '<p>' + item.Description + '</p>' +
+                    '<a href= "' + item.Links + '" target="_blank"> More Info...</a>' +
+                    '</div>' +
+                    '</div>'
+
+                    //item.Title +
+                    //'<img src="' + item.Image1 + '"></img>' +
+                    //item.Description
                     ;
 
                 let infowindow = new google.maps.InfoWindow({
-                    content: contentString
+                    content: contentString,
+                    pixelOffset: new google.maps.Size(0, 0),
+                    maxWidth: 700,
+
                 });
 
                 _m.addListener("click", function () {
+                    //infowindow.close();
                     infowindow.open(mappy, _m);
                 });
-                return _m;
-            });
 
+                google.maps.event.addListener(mappy, "click", function (event) {
+                    console.log('clicked')
+                    infowindow.close();
+                });
+                return _m;
+
+            });
 
             let markerCluster = new MarkerClusterer(mappy, markers,
                 { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
@@ -166,6 +192,7 @@ function saveData() {
     });
     
 }
+
 
 
 //function saveComment() {
@@ -228,3 +255,36 @@ function saveComment() {
     });
 
 }
+
+}
+
+// GeoLocation
+var elMap = document.getElementById('loc');                 // HTML element
+var msg = 'Sorry, we were unable to get your location.';    // No location msg
+
+if (Modernizr.geolocation) {                                // Is geo supported
+    navigator.geolocation.getCurrentPosition(success, fail);  // Ask for location
+    elMap.textContent = 'Checking location...';               // Say checking...
+} else {                                                    // Not supported
+    elMap.textContent = msg;                                  // Add manual entry
+}
+
+function success(position) {                                // Got location
+    msg = '<h3>Longitude:<br>';                               // Create message
+    msg += position.coords.longitude + '</h3>';               // Add longitude
+    msg += '<h3>Latitude:<br>';                               // Create message
+    msg += position.coords.latitude + '</h3>';                // Add latitude
+    elMap.innerHTML = msg;                                    // Show location
+}
+
+function fail(msg) {                                        // Not got location
+    elMap.textContent = msg;                                  // Show text input
+    console.log(msg.code);                                    // Log the error
+}
+
+// 1) relate to THAT (context)
+// 2) pass the infowindow in somehow - (closure, wrapper function)
+// 3) make infowindow global
+//4) google places API
+
+
