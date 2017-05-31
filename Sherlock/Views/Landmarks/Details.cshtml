@@ -1,7 +1,6 @@
 ﻿@model Sherlock.Models.Landmark
-@{
-    ViewBag.Title = "Details";
-}
+@using Microsoft.AspNet.Identity
+
 <div class="panel panel-default">
     <div class="panel-body">
 
@@ -24,9 +23,24 @@
         <h2>Rating &nbsp;&nbsp;&nbsp;<span class="alert-danger">pipes</span></h2>
 
 
+
         <p>
             @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Back to List", "Contact", "Home")
         </p>
     </div>
 </div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <input type="hidden" id="userId" value="@User.Identity.GetUserId()" />
+
+    <input type="hidden" id="landmarkId" value="@Model.Id" />
+
+    <div class="form-group">
+        <label for="usercomment">Add a comment?</label>
+        <textarea class="form-control" id="userComment" rows="3"></textarea>
+        <p><button type="submit" class="btn btn-danger" onclick="saveComment();">Add</button></p>
+    </div>
+}
+

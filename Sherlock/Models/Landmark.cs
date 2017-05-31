@@ -42,6 +42,8 @@ namespace Sherlock.Models
 
         public virtual ICollection<Votes> Vote { get; set; } = new HashSet<Votes>();
 
+        public ICollection<Comments> Comments { get; set; } = new HashSet<Comments>();
+
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 

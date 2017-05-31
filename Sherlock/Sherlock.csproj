@@ -197,6 +197,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentsAPIController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LandmarksAPIController.cs" />
     <Compile Include="Controllers\LandmarksController.cs" />
@@ -208,9 +210,23 @@
     <Compile Include="Migrations\201705231644125_addedtables.Designer.cs">
       <DependentUpon>201705231644125_addedtables.cs</DependentUpon>
     </Compile>
+
+    <Compile Include="Migrations\201705301421534_changedcomments.cs" />
+    <Compile Include="Migrations\201705301421534_changedcomments.Designer.cs">
+      <DependentUpon>201705301421534_changedcomments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705302031326_whatsgoingon.cs" />
+    <Compile Include="Migrations\201705302031326_whatsgoingon.Designer.cs">
+      <DependentUpon>201705302031326_whatsgoingon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705302124300_changedvirtual.cs" />
+    <Compile Include="Migrations\201705302124300_changedvirtual.Designer.cs">
+      <DependentUpon>201705302124300_changedvirtual.cs</DependentUpon>
+
     <Compile Include="Migrations\201705261456135_InitializingSherlock.cs" />
     <Compile Include="Migrations\201705261456135_InitializingSherlock.Designer.cs">
       <DependentUpon>201705261456135_InitializingSherlock.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -222,6 +238,7 @@
     <Compile Include="Models\Votes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\LandmarkCommentsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -301,6 +318,14 @@
     <Content Include="Views\Landmarks\Edit.cshtml" />
     <Content Include="Views\Landmarks\Index.cshtml" />
     <Content Include="Views\Home\Info.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Home\LandmarkComments.cshtml" />
+    <Content Include="Views\Home\_commentsList.cshtml" />
+    <Content Include="Views\Shared\_voteBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -312,8 +337,19 @@
     <EmbeddedResource Include="Migrations\201705231644125_addedtables.resx">
       <DependentUpon>201705231644125_addedtables.cs</DependentUpon>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="Migrations\201705301421534_changedcomments.resx">
+      <DependentUpon>201705301421534_changedcomments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705302031326_whatsgoingon.resx">
+      <DependentUpon>201705302031326_whatsgoingon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705302124300_changedvirtual.resx">
+      <DependentUpon>201705302124300_changedvirtual.cs</DependentUpon>
+
     <EmbeddedResource Include="Migrations\201705261456135_InitializingSherlock.resx">
       <DependentUpon>201705261456135_InitializingSherlock.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

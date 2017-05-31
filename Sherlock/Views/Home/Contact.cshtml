@@ -2,7 +2,7 @@
 
 
 
-<h2>Change Map Options</h2>
+<h2>The List of Landmarks</h2>
 
 
 
@@ -17,6 +17,7 @@
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Title)
+
                 </th>
 
                 <th></th>
@@ -27,6 +28,9 @@
                 <tr>
                     <td>
                         <a onClick="initMapSingle(@item.Latitude, @item.Longitude);" style="cursor: pointer; ">@item.Title</a>
+                        <span><a href="~/Home/LandmarkComments?id=@item.Id">View details</a></span> 
+                        @{var shortUserName = item.User.Email.Split('@').FirstOrDefault();}
+                        <span>Landmark added by @shortUserName.Substring(0, 1).ToUpper()@shortUserName.Substring(1)</span>
                     </td>
 
                     @*<td>

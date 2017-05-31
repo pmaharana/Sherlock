@@ -14,7 +14,7 @@ function initMap() {
         mapTypeId: google.maps.MapTypeId.ROADMAP, styles:
         [{ "elementType": "geometry", "stylers": [{ "color": "#ebe3cd" }] },
             { "elementType": "labels.text.fill", "stylers": [{ "color": "#523735" }] },
-            { "elementType": "labels.text.stroke", "stylers": [{ "color": "#f5f1e6" }] },
+            { "elementType": "labels.text.stroke", "stylers": [{ "col or": "#f5f1e6" }] },
             { "featureType": "administrative", "elementType": "geometry.stroke", "stylers": 
                 [{ "color": "#c9b2a6" }]
             }, { "featureType": "administrative.land_parcel", "elementType": "geometry.stroke", "stylers": [{ "color": "#dcd2be" }] },
@@ -83,13 +83,14 @@ function initMapSingle(latValue, longValue) {
 let talkToServer = () => {
 
     $.ajax({
-        url: '/api/LandmarksAPI',
+        url: "/api/LandmarksAPI",
         dataType: "json",
+        type: "GET",
         success: (data) => {
 
             //load marker data here 
 
-            var markers = data.map((item) => {
+            let markers = data.map((item) => {
 
                 // Event that closes the Info Window with a click on the map
                 //google.maps.event.addListener(map, 'click', function () {
@@ -98,12 +99,13 @@ let talkToServer = () => {
 
 
 
-                var _m = new google.maps.Marker({
+                let _m = new google.maps.Marker({
                     position: { lat: item.Latitude, lng: item.Longitude },
                     title: item.Title,
                     label: item.Title,
                     icon: 'http://i.imgur.com/NBZi6ra.png'
                 });
+
                 var tempor = item.Title;
                 var contentString =
                     '<div id="content">' +
@@ -125,6 +127,7 @@ let talkToServer = () => {
                     content: contentString,
                     pixelOffset: new google.maps.Size(0, 0),
                     maxWidth: 700,
+
                 });
 
                 _m.addListener("click", function () {
@@ -140,7 +143,7 @@ let talkToServer = () => {
 
             });
 
-            var markerCluster = new MarkerClusterer(mappy, markers,
+            let markerCluster = new MarkerClusterer(mappy, markers,
                 { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
 
             markers
@@ -152,21 +155,26 @@ let talkToServer = () => {
 }
 
 
+
+
 function saveData() {
-    let title = escape(document.getElementById('title').value);
-    let description = escape(document.getElementById('description').value);
-    let userid = escape(document.getElementById('userid').value);
-    let categoryid = escape(document.getElementById('categories').value);
+    
+
+    let title = $("#title").val();
+    let description = $("#description").val();
+    let userid = $("#userid").val();
+    let categoryid = $("#categories").val();
     let latlng = newmarker.getPosition();
 
-    //let mapdata = [{ Title: title, Address: address, Lat: latlng.lat(), Long: latlng.lng() }];
+
+    
     let that = this;
     $.ajax({
         url: "/api/LandmarksAPI",
         data: JSON.stringify({
-            // Those property names must match the property names of map object in the controller
-            Title: title.split("%20").join(" "),
-            Description: description.split("%20").join(" "),
+            
+            Title: title,
+            Description: description,
             Latitude: latlng.lat(),
             Longitude: latlng.lng(),
             UserId: userid,
@@ -176,7 +184,7 @@ function saveData() {
         type: "POST",
         dataType: "json",
         success: (data) => {
-            // goal: have the infoWindow availible here
+            
             console.log('hello', data, that);
             infowindow.close();
         }
@@ -185,6 +193,68 @@ function saveData() {
     
 }
 
+
+
+//function saveComment() {
+
+
+//    let userid = $("#userId").val();
+//    let landmarkid = $("#landmarkId").val();
+//    let usercomment = $("#userComment").val();
+
+
+//    $.ajax({
+//        url: "/api/CommentsAPI",
+//        data: JSON.stringify({
+
+//            Body: usercomment,
+//            LandmarkId: parseInt(landmarkid),
+//            UserId: userid
+//        }),
+
+//        contentType: "application/json",
+//        type: "POST",
+//        dataType: "json",
+//        success: (data) => {
+
+//            console.log('hello', data, that);
+//            $('textarea#userComment').val('');
+//        }
+
+//    });
+
+//}
+
+function saveComment() {
+
+
+    let userid = $("#userId").val();
+    let landmarkid = $("#landmarkId").val();
+    let usercomment = $("#userComment").val();
+    $('#userComment').val('');
+    
+
+    $.ajax({
+        url: "/home/addcomment",
+        data: JSON.stringify({
+
+            Body: usercomment,
+            LandmarkId: parseInt(landmarkid),
+            UserId: userid
+        }),
+
+        contentType: "application/json",
+        method: "PUT",
+        dataType: "html",
+        success: (newHtml) => {
+
+            
+            $("#listOfComments").html(newHtml);
+        }
+
+    });
+
+}
 
 }
 
@@ -216,4 +286,5 @@ function fail(msg) {                                        // Not got location
 // 2) pass the infowindow in somehow - (closure, wrapper function)
 // 3) make infowindow global
 //4) google places API
+
 

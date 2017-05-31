@@ -18,6 +18,14 @@ namespace Sherlock.Models
 
         public string Image { get; set; }
 
+        public int LandmarkId { get; set; }
+        public Landmark Landmark { get; set; }
+
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
+
+        
+
 
     }
 }
