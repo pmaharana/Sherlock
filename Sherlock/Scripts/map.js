@@ -129,12 +129,17 @@ let talkToServer = () => {
 }
 
 
+
+
 function saveData() {
-    let title = escape(document.getElementById('title').value);
-    let description = escape(document.getElementById('description').value);
-    let userid = escape(document.getElementById('userid').value);
-    let categoryid = escape(document.getElementById('categories').value);
+    
+
+    let title = $("#title").val();
+    let description = $("#description").val();
+    let userid = $("#userid").val();
+    let categoryid = $("#categories").val();
     let latlng = newmarker.getPosition();
+
 
     //let mapdata = [{ Title: title, Address: address, Lat: latlng.lat(), Long: latlng.lng() }];
     let that = this;
@@ -142,8 +147,8 @@ function saveData() {
         url: "/api/LandmarksAPI",
         data: JSON.stringify({
             // Those property names must match the property names of map object in the controller
-            Title: title.split("%20").join(" "),
-            Description: description.split("%20").join(" "),
+            Title: title,
+            Description: description,
             Latitude: latlng.lat(),
             Longitude: latlng.lng(),
             UserId: userid,
@@ -160,4 +165,35 @@ function saveData() {
         
     });
     
+}
+
+
+function saveComment() {
+
+
+    let userid = $("#userId").val();
+    let landmarkid = $("#landmarkId").val();
+    let usercomment = $("#userComment").val();
+
+
+    $.ajax({
+        url: "/api/CommentsAPI",
+        data: JSON.stringify({
+
+            Body: usercomment,
+            LandmarkId: parseInt(landmarkid),
+            UserId: userid
+        }),
+
+        contentType: "application/json",
+        type: "POST",
+        dataType: "json",
+        success: (data) => {
+
+            console.log('hello', data, that);
+            $('textarea#userComment').val('');
+        }
+
+    });
+
 }

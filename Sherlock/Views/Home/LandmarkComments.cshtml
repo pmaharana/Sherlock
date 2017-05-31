@@ -1,11 +1,11 @@
-﻿@model Sherlock.Models.Landmark
+﻿@model Sherlock.ViewModels.LandmarkCommentsViewModel
 @using Microsoft.AspNet.Identity
 
 <div class="panel panel-default">
     <div class="panel-body">
 
-        <h1 class="biggy">@Html.DisplayFor(model => model.Title)</h1>
-        <div><img src="@Html.DisplayFor(model => model.Image1)" style="width: 100%;" alt="Alternate Text" /></div>
+        <h1 class="biggy">@Html.DisplayFor(model => model.Landmark.Title)</h1>
+        <div><img src="@Html.DisplayFor(model => model.Landmark.Image1)" style="width: 100%;" alt="Alternate Text" /></div>
         <div style="color: transparent;">.</div>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -39,7 +39,7 @@
 {
     <input type="hidden" id="userId" value="@User.Identity.GetUserId()" />
 
-    <input type="hidden" id="landmarkId" value="@Model.Id" />
+    <input type="hidden" id="landmarkId" value="@Model.Landmark.Id" />
 
     <div class="form-group">
         <label for="usercomment">Add a comment?</label>
@@ -48,3 +48,7 @@
     </div>
 }
 
+<div>
+    @{var lmcomments = Model.Comments.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
+    @Html.Partial("_commentsList", lmcomments)
+</div>
