@@ -90,6 +90,11 @@ let talkToServer = () => {
 
             var markers = data.map((item) => {
 
+                // Event that closes the Info Window with a click on the map
+                //google.maps.event.addListener(map, 'click', function () {
+                //    infowindow.close();
+                //});
+
 
 
                 var _m = new google.maps.Marker({
@@ -115,18 +120,24 @@ let talkToServer = () => {
                     //item.Description
                     ;
 
-                var infowindow = new google.maps.InfoWindow({
+                let infowindow = new google.maps.InfoWindow({
                     content: contentString,
-                    pixelOffset: new google.maps.Size(00, 0),
-                    maxWidth: 500,
+                    pixelOffset: new google.maps.Size(0, 0),
+                    maxWidth: 700,
                 });
 
                 _m.addListener("click", function () {
+                    //infowindow.close();
                     infowindow.open(mappy, _m);
                 });
-                return _m;
-            });
 
+                google.maps.event.addListener(mappy, "click", function (event) {
+                    console.log('clicked')
+                    infowindow.close();
+                });
+                return _m;
+
+            });
 
             var markerCluster = new MarkerClusterer(mappy, markers,
                 { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
