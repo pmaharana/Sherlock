@@ -319,6 +319,7 @@
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Home\LandmarkComments.cshtml" />
     <Content Include="Views\Home\_commentsList.cshtml" />
+    <Content Include="Views\Shared\_voteBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

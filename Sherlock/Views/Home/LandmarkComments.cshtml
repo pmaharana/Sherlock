@@ -37,6 +37,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+   
     <input type="hidden" id="userId" value="@User.Identity.GetUserId()" />
 
     <input type="hidden" id="landmarkId" value="@Model.Landmark.Id" />
@@ -45,9 +46,16 @@
         <label for="usercomment">Add a comment?</label>
         <textarea class="form-control" id="userComment" rows="3"></textarea>
         <p><button type="submit" class="btn btn-danger" onclick="saveComment();">Add</button></p>
+        
+    </div>
+
+    <div>
+        @Html.Partial("_voteBlock")
+
     </div>
 }
-
+<p></p>
+<p></p>
 <div id="listOfComments">
     @{var lmcomments = Model.Comments.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
     @Html.Partial("_commentsList", lmcomments)

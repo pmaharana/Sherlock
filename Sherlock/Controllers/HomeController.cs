@@ -50,10 +50,11 @@ namespace Sherlock.Controllers
         [HttpPut]
         public async Task<ActionResult> AddComment(Comments comment)
         {
-            var comments = await db.Comments.Include(c => c.Landmark).Include(c => c.User).ToListAsync();
             db.Comments.Add(comment);
             await db.SaveChangesAsync();
-            return PartialView("_commentsList", comment);
+            var comments = await db.Comments.Include(c => c.Landmark).Include(c => c.User)
+                .Where(w => w.LandmarkId == comment.LandmarkId).ToListAsync();
+            return PartialView("_commentsList", comments);
         }
       
     }

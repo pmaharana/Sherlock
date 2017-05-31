@@ -141,12 +141,12 @@ function saveData() {
     let latlng = newmarker.getPosition();
 
 
-    //let mapdata = [{ Title: title, Address: address, Lat: latlng.lat(), Long: latlng.lng() }];
+    
     let that = this;
     $.ajax({
         url: "/api/LandmarksAPI",
         data: JSON.stringify({
-            // Those property names must match the property names of map object in the controller
+            
             Title: title,
             Description: description,
             Latitude: latlng.lat(),
@@ -158,7 +158,7 @@ function saveData() {
         type: "POST",
         dataType: "json",
         success: (data) => {
-            // goal: have the infoWindow availible here
+            
             console.log('hello', data, that);
             infowindow.close();
         }
@@ -204,7 +204,8 @@ function saveComment() {
     let userid = $("#userId").val();
     let landmarkid = $("#landmarkId").val();
     let usercomment = $("#userComment").val();
-
+    $('#userComment').val('');
+    
 
     $.ajax({
         url: "/home/addcomment",
