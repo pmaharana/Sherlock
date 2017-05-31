@@ -206,28 +206,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201705231644125_addedtables.cs" />
-    <Compile Include="Migrations\201705231644125_addedtables.Designer.cs">
-      <DependentUpon>201705231644125_addedtables.cs</DependentUpon>
-    </Compile>
-
-    <Compile Include="Migrations\201705301421534_changedcomments.cs" />
-    <Compile Include="Migrations\201705301421534_changedcomments.Designer.cs">
-      <DependentUpon>201705301421534_changedcomments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705302031326_whatsgoingon.cs" />
-    <Compile Include="Migrations\201705302031326_whatsgoingon.Designer.cs">
-      <DependentUpon>201705302031326_whatsgoingon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705302124300_changedvirtual.cs" />
-    <Compile Include="Migrations\201705302124300_changedvirtual.Designer.cs">
-      <DependentUpon>201705302124300_changedvirtual.cs</DependentUpon>
-
-    <Compile Include="Migrations\201705261456135_InitializingSherlock.cs" />
-    <Compile Include="Migrations\201705261456135_InitializingSherlock.Designer.cs">
-      <DependentUpon>201705261456135_InitializingSherlock.cs</DependentUpon>
-
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -332,25 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705231644125_addedtables.resx">
-      <DependentUpon>201705231644125_addedtables.cs</DependentUpon>
-    </EmbeddedResource>
-
-    <EmbeddedResource Include="Migrations\201705301421534_changedcomments.resx">
-      <DependentUpon>201705301421534_changedcomments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705302031326_whatsgoingon.resx">
-      <DependentUpon>201705302031326_whatsgoingon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705302124300_changedvirtual.resx">
-      <DependentUpon>201705302124300_changedvirtual.cs</DependentUpon>
-
-    <EmbeddedResource Include="Migrations\201705261456135_InitializingSherlock.resx">
-      <DependentUpon>201705261456135_InitializingSherlock.cs</DependentUpon>
-
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
