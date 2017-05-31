@@ -168,6 +168,36 @@ function saveData() {
 }
 
 
+//function saveComment() {
+
+
+//    let userid = $("#userId").val();
+//    let landmarkid = $("#landmarkId").val();
+//    let usercomment = $("#userComment").val();
+
+
+//    $.ajax({
+//        url: "/api/CommentsAPI",
+//        data: JSON.stringify({
+
+//            Body: usercomment,
+//            LandmarkId: parseInt(landmarkid),
+//            UserId: userid
+//        }),
+
+//        contentType: "application/json",
+//        type: "POST",
+//        dataType: "json",
+//        success: (data) => {
+
+//            console.log('hello', data, that);
+//            $('textarea#userComment').val('');
+//        }
+
+//    });
+
+//}
+
 function saveComment() {
 
 
@@ -177,7 +207,7 @@ function saveComment() {
 
 
     $.ajax({
-        url: "/api/CommentsAPI",
+        url: "/home/addcomment",
         data: JSON.stringify({
 
             Body: usercomment,
@@ -186,12 +216,12 @@ function saveComment() {
         }),
 
         contentType: "application/json",
-        type: "POST",
-        dataType: "json",
-        success: (data) => {
+        method: "PUT",
+        dataType: "html",
+        success: (newHtml) => {
 
-            console.log('hello', data, that);
-            $('textarea#userComment').val('');
+            
+            $("#listOfComments").html(newHtml);
         }
 
     });

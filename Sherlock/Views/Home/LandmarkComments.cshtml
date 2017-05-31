@@ -48,7 +48,7 @@
     </div>
 }
 
-<div>
+<div id="listOfComments">
     @{var lmcomments = Model.Comments.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
     @Html.Partial("_commentsList", lmcomments)
 </div>

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Sherlock.ViewModels;
 
+
 namespace Sherlock.Controllers
 {
     public class HomeController : Controller
@@ -46,5 +47,14 @@ namespace Sherlock.Controllers
             return View(vm);
         }
 
+        [HttpPut]
+        public async Task<ActionResult> AddComment(Comments comment)
+        {
+            var comments = await db.Comments.Include(c => c.Landmark).Include(c => c.User).ToListAsync();
+            db.Comments.Add(comment);
+            await db.SaveChangesAsync();
+            return PartialView("_commentsList", comment);
+        }
+      
     }
 }
