@@ -256,7 +256,7 @@ function saveComment() {
 
 }
 
-}
+
 
 // GeoLocation
 var elMap = document.getElementById('loc');                 // HTML element
