@@ -19,6 +19,13 @@
                 At officaes endi as nonsectem hariam nusam explaboribus nonem verci velecatem eiusam fugiand ionsenisciet oditi oditas siminct emoluptat aut debis ipis nis sero delitatur? Qui doluptatur repudae vendi ditat.
                 Ga. Quia cupta voloratem rehendae mo endi dit, id quam eseque eat alit la dellant laudam hiliquati nonsed erspit, si sum ut isi occatio. Equo od es ut qui quibusda a quunt aborisc itaquae et fugit, consecto dolorem estiorporro
             </p>
+
+            
+                <p>
+                    @Model.Landmark.Description
+                </p>
+            
+            
         </div>
 
         <h2>Additional Links</h2>
@@ -32,31 +39,42 @@
             @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
             @Html.ActionLink("Back to List", "Contact", "Home")
         </p>
+
+        @if (User.Identity.IsAuthenticated)
+        {
+
+            <input type="hidden" id="userId" value="@User.Identity.GetUserId()" />
+
+            <input type="hidden" id="landmarkId" value="@Model.Landmark.Id" />
+
+            <div class="form-group">
+                <label for="usercomment">Add a comment?</label>
+                <textarea class="form-control" id="userComment" rows="3"></textarea>
+                <p><button type="submit" class="btn btn-danger" onclick="saveComment();">Add</button></p>
+
+            </div>
+
+
+        }
+        <p></p>
+        <p></p>
+        <div id="listOfComments">
+            @{var lmcomments = Model.Comments.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
+            @Html.Partial("_commentsList", lmcomments)
+        </div>
+
+
     </div>
 </div>
 
-@if (User.Identity.IsAuthenticated)
+
+@*============ trying votes below here =================*@
+
+@*@if (User.Identity.IsAuthenticated)
 {
-   
-    <input type="hidden" id="userId" value="@User.Identity.GetUserId()" />
-
-    <input type="hidden" id="landmarkId" value="@Model.Landmark.Id" />
-
-    <div class="form-group">
-        <label for="usercomment">Add a comment?</label>
-        <textarea class="form-control" id="userComment" rows="3"></textarea>
-        <p><button type="submit" class="btn btn-danger" onclick="saveComment();">Add</button></p>
-        
-    </div>
-
     <div>
         @Html.Partial("_voteBlock")
+        <p>Thanks for your input</p>
 
     </div>
-}
-<p></p>
-<p></p>
-<div id="listOfComments">
-    @{var lmcomments = Model.Comments.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
-    @Html.Partial("_commentsList", lmcomments)
-</div>
+}*@
