@@ -70,11 +70,11 @@
 
 @*============ trying votes below here =================*@
 
-@*@if (User.Identity.IsAuthenticated)
+@if (User.Identity.IsAuthenticated)
 {
     <div>
         @Html.Partial("_voteBlock")
         <p>Thanks for your input</p>
 
     </div>
-}*@
+}
