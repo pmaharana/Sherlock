@@ -114,7 +114,7 @@ let talkToServer = () => {
                     '<h1 id="firstHeading" class="firstHeading">'+ item.Title +'</h1>' +
                     '<div id="bodytent">' + '<img src="' + item.Image1 + '" alt="' + item.Title +'" />' +
                     '<p>' + item.Description + '</p>' +
-                    '<a href= "' + item.Links + '" target="_blank"> More Info...</a>' +
+                    //'<a href= "' + item.Links + '" target="_blank"> More Info...</a>' +
                     '</div>' +
                     '</div>'
 
@@ -165,6 +165,7 @@ function saveData() {
     let userid = $("#userid").val();
     let categoryid = $("#categories").val();
     let latlng = newmarker.getPosition();
+    let image = $('#image1').val();
 
 
     
@@ -178,6 +179,7 @@ function saveData() {
             Latitude: latlng.lat(),
             Longitude: latlng.lng(),
             UserId: userid,
+            Image1: image,
             CategoryId: parseInt(categoryid)
         }),
         contentType: "application/json",
@@ -194,36 +196,6 @@ function saveData() {
 }
 
 
-
-//function saveComment() {
-
-
-//    let userid = $("#userId").val();
-//    let landmarkid = $("#landmarkId").val();
-//    let usercomment = $("#userComment").val();
-
-
-//    $.ajax({
-//        url: "/api/CommentsAPI",
-//        data: JSON.stringify({
-
-//            Body: usercomment,
-//            LandmarkId: parseInt(landmarkid),
-//            UserId: userid
-//        }),
-
-//        contentType: "application/json",
-//        type: "POST",
-//        dataType: "json",
-//        success: (data) => {
-
-//            console.log('hello', data, that);
-//            $('textarea#userComment').val('');
-//        }
-
-//    });
-
-//}
 
 function saveComment() {
 
