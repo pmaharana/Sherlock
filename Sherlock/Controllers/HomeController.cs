@@ -43,7 +43,8 @@ namespace Sherlock.Controllers
         {
             Landmark landmark = await db.Landmarks.FindAsync(id);
             var comments = await db.Comments.Include(c => c.Landmark).Include(c => c.User).ToListAsync();
-            var vm = new LandmarkCommentsViewModel { Landmark = landmark, Comments = comments };
+            var votes = await db.Votes.Include(v => v.Landmark).Include(v => v.User).ToListAsync();
+            var vm = new LandmarkCommentsViewModel { Landmark = landmark, Comments = comments, Votes = votes };
             return View(vm);
         }
 
@@ -56,6 +57,17 @@ namespace Sherlock.Controllers
                 .Where(w => w.LandmarkId == comment.LandmarkId).ToListAsync();
             return PartialView("_commentsList", comments);
         }
-      
+
+        [HttpDelete]
+        public async Task<ActionResult> AddVote(Votes vote)
+        {
+            db.Votes.Add(vote);
+            await db.SaveChangesAsync();
+            var votes = await db.Votes.Include(c => c.Landmark).Include(c => c.User)
+                .Where(w => w.LandmarkId == vote.LandmarkId).ToListAsync();
+
+            return PartialView("_voteBlock", votes);
+        }
+
     }
 }

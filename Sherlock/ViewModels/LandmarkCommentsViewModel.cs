@@ -10,5 +10,6 @@ namespace Sherlock.ViewModels
     {
         public Landmark Landmark { get; set; }
         public ICollection<Comments> Comments { get; set; }
+        public ICollection<Votes> Votes { get; set; }
     }
 }

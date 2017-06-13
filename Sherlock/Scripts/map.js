@@ -33,7 +33,7 @@ function initMap() {
      
 
 
-
+//GEOLOCATION FUNCTION 
 function geoMap() {
     let mapuu = new google.maps.Map(document.getElementById('map'), {
         center: { lat: 27.771344, lng: -82.635745 },
@@ -255,13 +255,47 @@ function saveComment() {
         dataType: "html",
         success: (newHtml) => {
 
-            
+            console.log(newHtml);
             $("#listOfComments").html(newHtml);
         }
 
     });
 
 }
+
+function saveVote() {
+
+
+    let value = $("#voteValue").val();
+    let userid = $("#userIdd").val();
+    let landmarkid = $("#landmarkIdd").val();
+    
+    
+    $.ajax({
+        url: "/home/AddVote",
+        data: JSON.stringify({
+
+            Value: parseInt(value),
+            UserId: userid,
+            LandmarkId: parseInt(landmarkid)
+        }),
+
+        contentType: "application/json",
+        method: "DELETE",
+        dataType: "html",
+        success: (newhtml) => {
+
+            console.log(newhtml);
+            $("#voteTotal").html(newhtml);
+
+        }
+    });
+
+}
+
+
+
+    
 
 
 

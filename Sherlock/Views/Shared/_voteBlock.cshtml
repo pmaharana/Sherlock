@@ -1,16 +1,7 @@
-﻿<div class="btn-group" id="filterDay" data-toggle="buttons">
-    <label class="btn btn-default blue">
-        <input type="radio" class="toggle" value="1" />One star
-    </label>
-    <label class="btn btn-default blue">
-        <input type="radio" class="toggle" value="2" /> Two Star
-    </label>
-    <label class="btn btn-default blue">
-        <input type="radio" class="toggle" value="3" /> Three Star
-    </label>
-    <label class="btn btn-default blue">
-        <input type="radio" class="toggle" value="4" /> Four Star
-    </label>
-  
-</div>
-<button>Click</button>
+﻿@model IEnumerable<Sherlock.Models.Votes>
+
+
+<p>
+    Vote Value is : @Model.Sum(s => s.Value)
+
+</p>
