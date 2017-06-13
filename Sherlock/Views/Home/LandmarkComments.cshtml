@@ -73,25 +73,34 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+    var userTest = Model.Votes.Where(w => w.LandmarkId == Model.Landmark.Id)
+                .Select(s => s.UserId).ToList();
 
+    if (userTest.Contains(User.Identity.GetUserId()))
+    {
+        <p>sorry you already voted</p>
+    }
+    else
+    {
+        <form class="form-inline">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Choose your vote</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="voteValue">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+            </select>
 
-    <form class="form-inline">
-        <label class="mr-sm-2" for="inlineFormCustomSelect">Choose your vote</label>
-        <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="voteValue">
-            <option selected>Choose...</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-            <option value="4">Four</option>
-        </select>
+            <input type="hidden" id="userIdd" value="@User.Identity.GetUserId()" />
 
-        <input type="hidden" id="userIdd" value="@User.Identity.GetUserId()" />
-
-        <input type="hidden" id="landmarkIdd" value="@Model.Landmark.Id" />
+            <input type="hidden" id="landmarkIdd" value="@Model.Landmark.Id" />
 
         </form>
         <p><button type="submit" class="btn btn-danger" onclick="saveVote();">Save Vote</button></p>
-        }
+    }
+
+}
 
         <div id="voteTotal">
 
