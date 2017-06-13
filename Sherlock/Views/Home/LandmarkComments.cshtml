@@ -71,7 +71,7 @@
 
 @*============ trying votes below here =================*@
 
-@if (User.Identity.IsAuthenticated)
+@*@if (User.Identity.IsAuthenticated)
 {
     var userTest = Model.Votes.Where(w => w.LandmarkId == Model.Landmark.Id)
                 .Select(s => s.UserId).ToList();
@@ -110,4 +110,14 @@
                 @{var lmvotes = Model.Votes.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
                 @Html.Partial("_voteBlock", lmvotes)
             </p>
-        </div>
+        </div>*@
+
+@{ 
+
+    var votelist = Model.Votes.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
+
+<input type="hidden" id="landmarkIdd" value="@Model.Landmark.Id"/>
+
+<div>
+    @Html.Partial("_voteBlock", votelist)
+</div>
