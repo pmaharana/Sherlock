@@ -1,16 +1,60 @@
-﻿<div class="btn-group" id="filterDay" data-toggle="buttons">
-    <label class="btn btn-default blue">
-        <input type="radio" class="toggle" value="1" />One star
-    </label>
-    <label class="btn btn-default blue">
-        <input type="radio" class="toggle" value="2" /> Two Star
-    </label>
-    <label class="btn btn-default blue">
-        <input type="radio" class="toggle" value="3" /> Three Star
-    </label>
-    <label class="btn btn-default blue">
-        <input type="radio" class="toggle" value="4" /> Four Star
-    </label>
-  
+﻿@model IEnumerable<Sherlock.Models.Votes>
+@using Microsoft.AspNet.Identity
+
+
+
+
+
+
+@*<p>
+    Vote Value is : @Model.Sum(s => s.Value)
+
+</p>*@
+
+@if (User.Identity.IsAuthenticated)
+{
+    var userTest = Model.Select(s => s.UserId).ToList();
+
+    if (!userTest.Contains(User.Identity.GetUserId()))
+    {
+        <form class="form-inline">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Choose your vote</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="voteValue">
+                <option selected>Choose...</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+            </select>
+
+            <input type="hidden" id="userIdd" value="@User.Identity.GetUserId()" />
+
+            @*<input type="hidden" id="landmarkIdd" value="@Model.Select(s => s.LandmarkId).FirstOrDefault()" />*@
+
+        </form>
+        <p><button type="submit" class="btn btn-danger" onclick="saveVote();">Save Vote</button></p>
+    }
+    else
+    {
+        <p>sorry you already voted</p>
+    }
+
+}
+
+<div id="voteTotal">
+
+
+   @if (Model.Sum(s => s.Value) > 0)
+   {
+    <p>
+        Vote Value is : @Model.Average(a => a.Value)
+
+    </p>
+   }
+   else
+   {
+        <p>@Model.Sum(s => s.Value)</p>
+   }
+
+
 </div>
-<button>Click</button>

@@ -40,7 +40,7 @@ namespace Sherlock.Models
         [ForeignKey("UserId")]
         public ApplicationUser User{ get; set; }
 
-        public virtual ICollection<Votes> Vote { get; set; } = new HashSet<Votes>();
+        public ICollection<Votes> Vote { get; set; } = new HashSet<Votes>();
 
         public ICollection<Comments> Comments { get; set; } = new HashSet<Comments>();
 
