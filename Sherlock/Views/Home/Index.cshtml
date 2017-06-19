@@ -1,20 +1,19 @@
-﻿
-<div id="map"></div>
+﻿<div class="panel">
+    <div class="panel-body">
+        <div id="map">
+            <div class="col-md-6 col-md-offset-3" style="vertical-align: middle;">
+                <button class="btn btn-lg btn-warning btn-block" onclick="initMap();"><span class="biggy2"> Sherlock Urban Sleuth </span><br />Click this button to load the map. <br />Select the markers <br />and start investigating.</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<button onclick="initMap();">map load</button>
+<button onclick="initMap();">Reset Map</button>
 
-<p> <button onclick="geoMap();"> Geolocation </button> </p>
-
-
-<a href="#">content</a>
-
-<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-</script>
-
-@*Temporary button*@
-<button onclick="success(position);">Where am I?</button>
-<p>position.coords.longitude</p>
+<button onclick="geoMap();">Find Your Location</button>
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb35GFpToNtidA7VfBEZS1vOEgiIxJ2vI&callback=initMap">
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script>

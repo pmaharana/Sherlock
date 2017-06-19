@@ -1,57 +1,47 @@
 ﻿@model IEnumerable<Sherlock.Models.Landmark>
 
+<div class="panel panel-default evidence">
+    <div class="panel listly evidence">
+        <h2 class="biggy" style="color: white;"><i class="glyphicon glyphicon-briefcase"></i> &nbsp;Evidence Room</h2>
+        <p class="describer">Click on name for position on map - Open dossier for more evidence.</p>
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table table-hover table-striped">
+                    @*<tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Title)
+                            </th>
+                            <th></th>
+                        </tr>*@
 
-
-
-<h2>The List of Landmarks</h2>
-
-
-
-
-
-
-<div class="row">
-
-    <div class="col-sm-6">
-
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-
-                </th>
-
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
+                    @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        <a onClick="initMapSingle(@item.Latitude, @item.Longitude);" style="cursor: pointer; ">@item.Title</a>
-                        <span><a href="~/Home/LandmarkComments?id=@item.Id">View details</a></span> 
-                        @{var shortUserName = item.User.Email.Split('@').FirstOrDefault();}
-                        <span>Landmark added by @shortUserName.Substring(0, 1).ToUpper()@shortUserName.Substring(1)</span>
-                    </td>
+                        <tr>
+                            <td>
+                                <a onClick="initMapSingle(@item.Latitude, @item.Longitude);" style="cursor: pointer; ">@item.Title</a>
+                                <span class="badge pull-right"><a href="~/Home/LandmarkComments?id=@item.Id" style="color: #703030; font-size: 16px;"><i class="glyphicon glyphicon-folder-open"></i> &nbsp; Open Dossier</a></span>
+                                @*@{var shortUserName = item.User.Email.Split('@').FirstOrDefault();} <br />
+                                    <span class="smally">Landmark added by @shortUserName.Substring(0, 1).ToUpper()@shortUserName.Substring(1)</span>*@
+                            </td>
 
-                    @*<td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        </td>*@
-                </tr>
-            }
+                            @*<td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                </td>*@
+                        </tr>
+                    }
 
-        </table>
+                </table>
 
+            </div>
+            <div class="col-sm-6" id="map" style="max-height: 400px;"></div>
+        </div>
     </div>
-    <div class="col-sm-6" id="map"></div>
 </div>
-
 
 <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
 </script>
-
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb35GFpToNtidA7VfBEZS1vOEgiIxJ2vI&callback=initMap">
 </script>

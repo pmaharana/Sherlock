@@ -2,5 +2,8 @@
 
 @foreach (var item in Model)
 {
-    <p>@item.Body <span>comment made by @item.User.Email on @item.DateAdded</span></p>
+    <div class="commented">
+        <p class="readme">@item.Body</p>
+        <p class="commtext">Report by @item.User.Email <span class="pull-right"> @item.DateAdded</span></p>
+    </div>
 }

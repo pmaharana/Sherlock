@@ -26,27 +26,45 @@ textarea {
 
 #map {
     height: 700px;
+    background-color: #2F343B;
 }
 
 /* EXTRAS to give it some style -------------------------------------------------- */
 body {
-    font-family: 'Sancreek', cursive;
+    /*font-family: 'Sancreek', cursive;*/
     background-color: #703030;
-    background: url(http://i.imgur.com/9G3raXA.png);
+    background: url(http://i.imgur.com/p8M4TOJ.jpg);
 }
 
-h2, h3 {
+h1, h2, h3 {
     font-family: 'Sancreek', cursive;
+    color: #2F343B;
+}
+
+.shady {
+    text-shadow: 2px 2px 1px #2F343B;
+}
+
+footer {
+    text-shadow: 2px 2px 1px black, -2px -2px 1px black, -2px 2px 1px black, 2px -2px 1px black;
 }
 
 p {
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .biggy {
-    font-size: 55px;
+    font-size: 50px;
     font-family: 'Sancreek', cursive;
     font-family: 'Rye', cursive;
+    color: white;
+}
+
+.biggy2 {
+    font-size: 40px;
+    font-family: 'Sancreek', cursive;
+    font-family: 'Rye', cursive;
+    color: white;
 }
 
 .navbar-inverse {
@@ -54,11 +72,13 @@ p {
 }
 
     .navbar-inverse .navbar-brand {
+        font-family: 'Sancreek', cursive;
         font-size: 40px;
         color: #E3CDA4;
     }
 
-.navbar-nav {
+.navbarry {
+    font-family: 'Sancreek', cursive;
     font-size: 22px;
 }
 
@@ -85,15 +105,98 @@ p {
     font-size: 15px;
 }
 
-#bodytent img {
+    #bodytent img {
         width: 700px;
         max-width: 100%;
-}
+    }
 
 #form {
     background-color: #E3CDA4;
     width: 600px;
 }
+
+table, td {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
+    color: #2F343B;
+}
+
+.smally {
+    font-size: 14px;
+}
+
+.readme {
+    font-family: 'Bree Serif', serif;
+    font-size: 20px;
+    letter-spacing: -.02em;
+    margin: 0;
+}
+
+/* IMAGE STYLE FOR DETAILS PAGE  */
+.detailsimage {
+    overflow: hidden;
+    height: 250px;
+    position: relative;
+}
+
+    .detailsimage img {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        vertical-align: middle;
+        top: -70%;
+    }
+
+.img-responsive {
+    max-height: 360px;
+}
+
+.linky {
+    line-height: 0px;
+}
+
+.listly {
+    margin: 0 20px 0 20px;
+}
+
+.filesly {
+    background-color: #E3CDA4;
+}
+
+.describer {
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 25px;
+    color: white;
+}
+
+.badge {
+    background-color: #E3CDA4;
+}
+
+.evidence {
+    background-color: #7E827A;
+}
+
 .table {
-    color:antiquewhite;
+    background-color: white;
+}
+
+.panel-default > .panel-heading, .yelly {
+    background-color: #FAEACC;
+}
+
+/* COMMENTS STYLING  */
+.well-sm {
+    background-color: transparent;
+    border-color: #7E827A;
+}
+
+.commented {
+    border-top: 1px solid #7E827A;
+    padding-top: 5px;
+}
+
+.commtext {
+    font-size: 12px;
 }

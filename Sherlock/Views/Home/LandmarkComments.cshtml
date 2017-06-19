@@ -1,123 +1,92 @@
 ﻿@model Sherlock.ViewModels.LandmarkCommentsViewModel
 @using Microsoft.AspNet.Identity
-@using Sherlock.Models
 
-<div class="panel panel-default">
+<div class="panel panel-default filesly">
+    <div class="panel-heading" style="background-color: #2F343B;">
+        <h1 class="biggy" style="text-align: center; color: white;"><i class="glyphicon glyphicon-folder-open"></i> &nbsp; @Html.DisplayFor(model => model.Landmark.Title)</h1>
+    </div>
     <div class="panel-body">
-
-        <h1 class="biggy">@Html.DisplayFor(model => model.Landmark.Title)</h1>
-        <div><img src="@Html.DisplayFor(model => model.Landmark.Image1)" style="width: 100%;" alt="Alternate Text" /></div>
-        <div style="color: transparent;">.</div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <p>Address information to be inserted</p>
-                <p>City State Country</p>
+        @*Image only if there is a IMAGE LINK*@
+        @if (!string.IsNullOrEmpty(Model.Landmark.Image1))
+            {
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive center-block" src="@Html.DisplayFor(model => model.Landmark.Image1)" alt="@Html.DisplayFor(model => model.Landmark.Title)" />
+                </div>
             </div>
-        </div>
-        <div>
-            <p>
-                Description text here. LoremObis nos cuptatu riant. Um volorercid que venis explaborum volupturibus et, sam rerrum nisque doluptur aliquae nulparum aut aut alit aliquis cipsus non con re volo eos mil incte nem ex eum ex eaquibus molupta qui conem que dios explicimus in commossint maximpos as cus aut quatia incitent alis enet re qui duciisimusam consequ atiatiisi dolor aut am, quidis venda corem harumquia nobis es nos moloribus vero idi blatibus ea dit il exeremporrum aut aut quia dolorerchil mo beaque comnimp orporercid que latquunt ommollant.
-                At officaes endi as nonsectem hariam nusam explaboribus nonem verci velecatem eiusam fugiand ionsenisciet oditi oditas siminct emoluptat aut debis ipis nis sero delitatur? Qui doluptatur repudae vendi ditat.
-                Ga. Quia cupta voloratem rehendae mo endi dit, id quam eseque eat alit la dellant laudam hiliquati nonsed erspit, si sum ut isi occatio. Equo od es ut qui quibusda a quunt aborisc itaquae et fugit, consecto dolorem estiorporro
-            </p>
+        }
 
-            
-                <p>
+        <div style="color: transparent;">.</div>
+
+        @*Address -- Only if content*@
+        @if (!string.IsNullOrEmpty(Model.Landmark.Address1))
+            {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <p class="readme" style="text-align: center;">Location: @Html.DisplayFor(model => model.Landmark.Address1) @Html.DisplayFor(model => model.Landmark.Address2) <i class="glyphicon glyphicon-map-marker" style="color: gray;"></i> @Html.DisplayFor(model => model.Landmark.City), @Html.DisplayFor(model => model.Landmark.State) @Html.DisplayFor(model => model.Landmark.ZipCode)</p>
+                </div>
+            </div>
+        }
+
+        <div class="panel panel-default yelly">
+            <div class="panel-heading" style="background-color: #2F343B;">
+                <h3 style="margin-top: 0; margin-bottom: 0; text-align: center; color: #E3CDA4; letter-spacing: .06em;">Description:</h3>
+            </div>
+            <div class="panel-body">
+                <p class="readme" style="column-count: 3; column-width: 300px; column-rule: 3px ridge Gainsboro; column-gap: 40px;">
                     @Model.Landmark.Description
                 </p>
-            
-            
+            </div>
         </div>
 
-        <h2>Additional Links</h2>
-        <a href="#">sampleLink</a>
 
-        <h2>Rating &nbsp;&nbsp;&nbsp;<span class="alert-danger">pipes</span></h2>
-
-
-
-        <p>
-            @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-            @Html.ActionLink("Back to List", "Contact", "Home")
-        </p>
-
-        @if (User.Identity.IsAuthenticated)
-        {
-
-            <input type="hidden" id="userId" value="@User.Identity.GetUserId()" />
-
-            <input type="hidden" id="landmarkId" value="@Model.Landmark.Id" />
-
-            <div class="form-group">
-                <label for="usercomment">Add a comment?</label>
-                <textarea class="form-control" id="userComment" rows="3"></textarea>
-                <p><button type="submit" class="btn btn-danger" onclick="saveComment();">Add</button></p>
-
+        @*Additional Links -- Only if content*@
+        @if (!string.IsNullOrEmpty(Model.Landmark.Links))
+            {
+            <div class="row" style="display: flex; flex-wrap: wrap; align-items: center;">
+                <div class="col-lg-4"><h1>Additional Links:</h1></div>
+                <div class="col-lg-3"><a class="readme btn btn-info" href="@Html.DisplayFor(model => model.Landmark.Links)" target="_blank">@Html.DisplayFor(model => model.Landmark.Title)</a></div>
             </div>
-
-
         }
-        <p></p>
-        <p></p>
+
+        @*Button Back to Evidence Room ------ *@
+        <div class="row" style="padding-top: 30px;">
+            <div class="col-lg-12">
+                <a href="@Url.Action("LandmarksList", "Home")" class="btn center-block readme" style="background-color: #7E827A; color: white;" role="button"><i class="glyphicon glyphicon-briefcase"></i> &nbsp; Back to Evidence Room</a>
+            </div>
+        </div>
+
+        <h1>Comments</h1>
+        @*Comments Section ------ *@
+
         <div id="listOfComments">
             @{var lmcomments = Model.Comments.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
             @Html.Partial("_commentsList", lmcomments)
         </div>
+        @if (User.Identity.IsAuthenticated)
+            {
+            <p></p>
+                <input type="hidden" id="userId" value="@User.Identity.GetUserId()" />
+                <input type="hidden" id="landmarkId" value="@Model.Landmark.Id" />
+                <div class="panel panel-default">
+                    <div class="panel-body yelly">
+                        <div class="form-group">
+                            <label for="usercomment">Report Additional Information or Clues</label>
+                            <textarea class="form-control" id="userComment" rows="3"></textarea>
+                            <p><button type="submit" class="btn btn-success" onclick="saveComment();">Submit report to evidence</button></p>
+                        </div>
+                    </div>
+                </div>
+        }
 
+
+        @*Voting Section ------ *@
+
+        @{var votelist = Model.Votes.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
+        <input type="hidden" id="landmarkIdd" value="@Model.Landmark.Id" />
+        <div>
+            @Html.Partial("_voteBlock", votelist)
+        </div>
 
     </div>
-</div>
-
-
-@*============ trying votes below here =================*@
-
-@*@if (User.Identity.IsAuthenticated)
-{
-    var userTest = Model.Votes.Where(w => w.LandmarkId == Model.Landmark.Id)
-                .Select(s => s.UserId).ToList();
-
-    if (userTest.Contains(User.Identity.GetUserId()))
-    {
-        <p>sorry you already voted</p>
-    }
-    else
-    {
-        <form class="form-inline">
-            <label class="mr-sm-2" for="inlineFormCustomSelect">Choose your vote</label>
-            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="voteValue">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-                <option value="4">Four</option>
-            </select>
-
-            <input type="hidden" id="userIdd" value="@User.Identity.GetUserId()" />
-
-            <input type="hidden" id="landmarkIdd" value="@Model.Landmark.Id" />
-
-        </form>
-        <p><button type="submit" class="btn btn-danger" onclick="saveVote();">Save Vote</button></p>
-    }
-
-}
-
-        <div id="voteTotal">
-
-
-            <p>
-                
-                @{var lmvotes = Model.Votes.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
-                @Html.Partial("_voteBlock", lmvotes)
-            </p>
-        </div>*@
-
-@{ 
-
-    var votelist = Model.Votes.Where(w => w.LandmarkId == Model.Landmark.Id).ToList();}
-
-<input type="hidden" id="landmarkIdd" value="@Model.Landmark.Id"/>
-
-<div>
-    @Html.Partial("_voteBlock", votelist)
 </div>
